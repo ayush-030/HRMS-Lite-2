@@ -5,7 +5,7 @@ The application allows an admin to manage employee records and track daily atten
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
 - **Frontend (Vercel):** https://hrms-lite-2-beryl.vercel.app/
 - **Backend (Render):** https://hrms-lite-2-4xrt.onrender.com
@@ -13,7 +13,7 @@ The application allows an admin to manage employee records and track daily atten
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project simulates a basic internal HR tool with two major modules:
 
@@ -29,9 +29,9 @@ The focus of this assignment is to demonstrate end-to-end full-stack development
 
 ---
 
-## ✨ Features
+## Features
 
-### 👨‍💼 Employee Management
+### Employee Management
 - Add employee with:
   - Employee ID (unique)
   - Full Name
@@ -40,7 +40,7 @@ The focus of this assignment is to demonstrate end-to-end full-stack development
 - View all employees in a table format
 - Delete employee record
 
-### 📅 Attendance Management
+### Attendance Management
 - Mark attendance for employees using:
   - Date
   - Status (Present / Absent)
@@ -49,7 +49,7 @@ The focus of this assignment is to demonstrate end-to-end full-stack development
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Frontend
 - React (Vite)
@@ -71,7 +71,7 @@ The focus of this assignment is to demonstrate end-to-end full-stack development
 
 ---
 
-## 🔗 API Endpoints
+## API Endpoints
 
 ### Employee APIs
 - `GET /employees` → Fetch all employees
@@ -84,7 +84,7 @@ The focus of this assignment is to demonstrate end-to-end full-stack development
 
 ---
 
-## ✅ Validations & Error Handling
+## Validations & Error Handling
 
 - Required field validation for employee and attendance forms
 - Email validation using `EmailStr` (Pydantic)
@@ -94,15 +94,15 @@ The focus of this assignment is to demonstrate end-to-end full-stack development
 
 ---
 
-## ⚙️ How to Run Locally
+## How to Run Locally
 
-### 1️⃣ Clone Repository
+### 1. Clone Repository
 ```bash
 git clone <YOUR_GITHUB_REPO_LINK>
 cd HRMS-Lite-2
 ```
 
-### 2️⃣ Backend Setup (FastAPI)
+### 2️. Backend Setup (FastAPI)
 
 Go to backend folder:
 ```bash
@@ -139,7 +139,7 @@ Swagger Docs:
 http://127.0.0.1:8000/docs
 ```
 
-### 3️⃣ Frontend Setup (React)
+### 3️. Frontend Setup (React)
 
 Go to frontend folder:
 ```bash
@@ -162,7 +162,7 @@ http://localhost:5173
 ```
 ---
 
-## 📂 Project Structure
+## Project Structure
 HRMS-Lite-2/
    backend/
       main.py
@@ -179,7 +179,7 @@ HRMS-Lite-2/
 
 ---
 
-## 📌 Assumptions / Limitations
+## Assumptions / Limitations
 
 - Single admin system (no authentication required)
 
@@ -191,7 +191,7 @@ HRMS-Lite-2/
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 - Ayush Rawat
 - GitHub: https://github.com/ayush-030
