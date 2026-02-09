@@ -37,12 +37,14 @@ export default function Employees() {
     try {
       await API.post("/employees", formData);
       alert("Employee Added!");
+
       setFormData({
         employee_id: "",
         full_name: "",
         email: "",
         department: "",
       });
+
       fetchEmployees();
     } catch (err) {
       alert(err.response?.data?.detail || "Error adding employee");
@@ -160,6 +162,7 @@ export default function Employees() {
                 <td>{emp.full_name}</td>
                 <td>{emp.email}</td>
                 <td>{emp.department}</td>
+
                 <td style={{ display: "flex", gap: "10px" }}>
                   <Link to={`/attendance/${emp.employee_id}`}>
                     <button style={{ cursor: "pointer" }}>Attendance</button>

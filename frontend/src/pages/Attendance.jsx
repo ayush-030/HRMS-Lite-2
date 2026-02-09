@@ -38,7 +38,9 @@ export default function Attendance() {
     try {
       await API.post("/attendance", formData);
       alert("Attendance marked/updated!");
+
       setFormData({ ...formData, date: "" });
+
       fetchAttendance();
     } catch (err) {
       alert(err.response?.data?.detail || "Error marking attendance");
