@@ -2,22 +2,17 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div
-      style={{
-        padding: "15px 20px",
-        background: "#111827",
-        color: "white",
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
-      <h2 style={{ margin: 0 }}>HRMS Lite</h2>
+    <nav className="bg-gray-900 text-white px-6 py-4 flex items-center justify-between shadow-md">
+      <h1 className="text-xl font-semibold tracking-wide">HRMS Lite</h1>
 
-      <div style={{ display: "flex", gap: "15px" }}>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/">
+      <div className="flex gap-4 text-sm">
+        <Link
+          to="/"
+          className="hover:text-blue-400 transition font-medium"
+        >
           Employees
         </Link>
       </div>
-    </div>
+    </nav>
   );
 }

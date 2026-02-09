@@ -36,7 +36,6 @@ export default function Employees() {
     e.preventDefault();
     try {
       await API.post("/employees", formData);
-      alert("Employee Added!");
 
       setFormData({
         employee_id: "",
@@ -56,7 +55,6 @@ export default function Employees() {
 
     try {
       await API.delete(`/employees/${id}`);
-      alert("Employee deleted");
       fetchEmployees();
     } catch (err) {
       alert("Error deleting employee");
@@ -64,128 +62,135 @@ export default function Employees() {
   };
 
   return (
-    <div>
-      <h2>Employee Management</h2>
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <div className="max-w-6xl mx-auto">
 
-      {/* Add Employee Form */}
-      <form
-        onSubmit={handleAddEmployee}
-        style={{
-          display: "grid",
-          gap: "10px",
-          maxWidth: "400px",
-          marginBottom: "30px",
-          padding: "15px",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-        }}
-      >
-        <h3>Add Employee</h3>
+        {/* Header */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">Employee Management</h2>
+          <p className="text-gray-600 text-sm mt-1">
+            Manage employees and track attendance records.
+          </p>
+        </div>
 
-        <input
-          type="text"
-          name="employee_id"
-          placeholder="Employee ID"
-          value={formData.employee_id}
-          onChange={handleChange}
-          required
-        />
+        <div className="grid md:grid-cols-3 gap-6">
 
-        <input
-          type="text"
-          name="full_name"
-          placeholder="Full Name"
-          value={formData.full_name}
-          onChange={handleChange}
-          required
-        />
+          {/* Add Employee Form */}
+          <div className="bg-white p-5 rounded-xl shadow border">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Add New Employee
+            </h3>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+            <form onSubmit={handleAddEmployee} className="space-y-3">
+              <input
+                type="text"
+                name="employee_id"
+                placeholder="Employee ID"
+                value={formData.employee_id}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+              />
 
-        <input
-          type="text"
-          name="department"
-          placeholder="Department"
-          value={formData.department}
-          onChange={handleChange}
-          required
-        />
+              <input
+                type="text"
+                name="full_name"
+                placeholder="Full Name"
+                value={formData.full_name}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+              />
 
-        <button
-          style={{
-            padding: "10px",
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Add Employee
-        </button>
-      </form>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+              />
 
-      {/* Employee List */}
-      <h3>Employees List</h3>
+              <input
+                type="text"
+                name="department"
+                placeholder="Department"
+                value={formData.department}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+              />
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : employees.length === 0 ? (
-        <p>No employees found.</p>
-      ) : (
-        <table
-          border="1"
-          cellPadding="10"
-          style={{ width: "100%", borderCollapse: "collapse" }}
-        >
-          <thead style={{ background: "#f3f4f6" }}>
-            <tr>
-              <th>Employee ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Department</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition">
+                Add Employee
+              </button>
+            </form>
+          </div>
 
-          <tbody>
-            {employees.map((emp) => (
-              <tr key={emp.id}>
-                <td>{emp.employee_id}</td>
-                <td>{emp.full_name}</td>
-                <td>{emp.email}</td>
-                <td>{emp.department}</td>
+          {/* Employee List */}
+          <div className="md:col-span-2 bg-white p-5 rounded-xl shadow border">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-gray-800">
+                Employees List
+              </h3>
 
-                <td style={{ display: "flex", gap: "10px" }}>
-                  <Link to={`/attendance/${emp.employee_id}`}>
-                    <button style={{ cursor: "pointer" }}>Attendance</button>
-                  </Link>
+              <span className="text-sm text-gray-600">
+                Total: <b>{employees.length}</b>
+              </span>
+            </div>
 
-                  <button
-                    style={{
-                      background: "red",
-                      color: "white",
-                      border: "none",
-                      padding: "5px 10px",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleDelete(emp.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            {loading ? (
+              <p className="text-gray-500">Loading employees...</p>
+            ) : employees.length === 0 ? (
+              <div className="text-gray-500 text-sm border border-dashed rounded-lg p-4 text-center">
+                No employees found. Add your first employee from the form.
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="bg-gray-100 text-gray-700">
+                      <th className="p-3 text-left">Employee ID</th>
+                      <th className="p-3 text-left">Name</th>
+                      <th className="p-3 text-left">Email</th>
+                      <th className="p-3 text-left">Department</th>
+                      <th className="p-3 text-left">Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {employees.map((emp) => (
+                      <tr key={emp.id} className="border-t hover:bg-gray-50">
+                        <td className="p-3 font-medium">{emp.employee_id}</td>
+                        <td className="p-3">{emp.full_name}</td>
+                        <td className="p-3">{emp.email}</td>
+                        <td className="p-3">{emp.department}</td>
+
+                        <td className="p-3 flex gap-2">
+                          <Link to={`/attendance/${emp.employee_id}`}>
+                            <button className="px-3 py-1 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs transition">
+                              Attendance
+                            </button>
+                          </Link>
+
+                          <button
+                            onClick={() => handleDelete(emp.id)}
+                            className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs transition"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }
